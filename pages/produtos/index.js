@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { useEffect } from "react";
 import { useState } from "react";
 import {
   Button,
@@ -12,21 +13,14 @@ import {
 } from "react-bootstrap";
 import * as Icon from "react-bootstrap-icons";
 import ItemTable from "../../components/ItemTable";
+import productService from "../../services/product.service";
 
 export default function Produtos() {
-  const data = [];
+  const [data, setData] = useState([])
 
-  for (let i = 0; i < 10; i++) {
-    const hoje = new Date();
-    data.push({
-      image: "image",
-      name: `Produto ${i}`,
-      category: `Categoria ${i}`,
-      price: `R$ ${i},99`,
-      createdAt: hoje.toLocaleDateString(),
-      id: i,
-    });
-  }
+  useEffect(()=>{
+    productService.getProducts().then((r)=> setData(r));
+  }, []);
 
   const header = ["FOTO", "NOME", "CATEGORIA", "PREÇO", "CRIADO EM", "AÇÕES"];
 

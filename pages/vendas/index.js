@@ -13,11 +13,14 @@ import {
 import * as Icon from "react-bootstrap-icons";
 import ItemTable from "../../components/ItemTable";
 
+
+
 export default function Vendas() {
   const data = [];
 
   for (let i = 0; i < 10; i++) {
     const hoje = new Date();
+
     data.push({
       order: `#${i}`,
       client: `Cliente ${i}`,
@@ -25,6 +28,7 @@ export default function Vendas() {
       createdAt: hoje.toLocaleDateString(),
       id: i,
     });
+    
   }
 
   const header = ["PEDIDO", "CLIENTE", "TOTAL", "CRIADO EM", "AÇÕES"];
